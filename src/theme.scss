@@ -1,0 +1,98 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-brownish: (
+    50 : #faf3ec,
+    100 : #f2e0d1,
+    200 : #e9ccb2,
+    300 : #e0b793,
+    400 : #d9a77b,
+    500 : #d29864,
+    600 : #cd905c,
+    700 : #c78552,
+    800 : #c17b48,
+    900 : #b66a36,
+    A100 : #ffffff,
+    A200 : #ffe0cd,
+    A400 : #ffc19a,
+    A700 : #ffb180,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-greenish: (
+    50 : #f2f8e7,
+    100 : #dfeec4,
+    200 : #c9e39d,
+    300 : #b3d875,
+    400 : #a3cf58,
+    500 : #93c73a,
+    600 : #8bc134,
+    700 : #80ba2c,
+    800 : #76b325,
+    900 : #64a618,
+    A100 : #edffdb,
+    A200 : #d4ffa8,
+    A400 : #baff75,
+    A700 : #adff5c,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$client-app-primary: mat-palette($md-brownish);
+$client-app-accent:  mat-palette($md-greenish);
+
+// The warn palette is optional (defaults to red).
+$client-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$client-app-theme: mat-light-theme($client-app-primary, $client-app-accent, $client-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($client-app-theme);
