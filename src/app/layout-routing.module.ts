@@ -13,7 +13,7 @@ import { LoginModule } from './login/login.module';
 import { RegistrationModule } from './registration/registration.module';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: '/dashboard',

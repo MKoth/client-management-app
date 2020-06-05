@@ -12,7 +12,7 @@ export class MainLayoutComponent implements OnDestroy {
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) { 
     console.log('run constructor');
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }

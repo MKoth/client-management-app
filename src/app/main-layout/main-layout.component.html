@@ -1,7 +1,7 @@
 <div class="menu-layout-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="menu-layout-toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <h1 class="menu-layout-app-name">Responsive App</h1>
+        <h1 class="menu-layout-app-name">Clients Management App</h1>
     </mat-toolbar>
   
     <mat-sidenav-container class="menu-layout-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
@@ -15,10 +15,10 @@
                             </mat-expansion-panel-header>
                             <mat-panel-description>
                                 <mat-nav-list>
-                                    <mat-list-item *ngFor="let link of item.children">
+                                    <mat-list-item *ngFor="let link of item.children" [routerLink]="link.link">
                                     <a matLine [routerLink]="link.link">{{ link.name }}</a>
                                     <button mat-icon-button>
-                                        <mat-icon color="accent">{{link.icon}}</mat-icon>
+                                        <mat-icon [routerLink]="link.link" color="accent">{{link.icon}}</mat-icon>
                                     </button>
                                     </mat-list-item>
                                 </mat-nav-list>
@@ -27,10 +27,10 @@
                     </ng-container>
                     <ng-container *ngIf="!item.children">
                         <mat-nav-list>
-                            <mat-list-item>
+                            <mat-list-item [routerLink]="item.link">
                                 <a matLine [routerLink]="item.link">{{ item.name }}</a>
                                 <button mat-icon-button>
-                                    <mat-icon color="accent">{{item.icon}}</mat-icon>
+                                    <mat-icon [routerLink]="item.link" color="accent">{{item.icon}}</mat-icon>
                                 </button>
                             </mat-list-item>
                         </mat-nav-list>
