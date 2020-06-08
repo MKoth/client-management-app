@@ -1,0 +1,72 @@
+<form
+    [formGroup]="userForm"
+    class="user-form"
+    fxLayout="row wrap"
+    fxLayoutGap="1%"
+>
+
+    <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="1" fxFlex.lt-md="49%" fxFlexOrder.lt-md="1" fxFlex.xs="99%" fxFlexOrder.xs="1">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="name" required />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
+        </div>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="2" fxFlex.lt-md="49%" fxFlexOrder.lt-md="3" fxFlex.xs="99%" fxFlexOrder.xs="3">
+        <mat-label>Username</mat-label>
+        <input matInput required formControlName="username">
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+            <div *ngIf="username.errors.required">
+                Username is required.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="3" fxFlex.lt-md="49%" fxFlexOrder.lt-md="5" fxFlex.xs="99%" fxFlexOrder.xs="5">
+        <mat-label>Password</mat-label>
+        <input matInput required formControlName="password">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+                Password is required.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="4" fxFlex.lt-md="49%" fxFlexOrder.lt-md="2" fxFlex.xs="99%" fxFlexOrder.xs="2">
+        <mat-label>Last Name</mat-label>
+        <input matInput required formControlName="last_name">
+        <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="alert alert-danger">
+            <div *ngIf="last_name.errors.required">
+                Last Name is required.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="5" fxFlex.lt-md="49%" fxFlexOrder.lt-md="4" fxFlex.xs="99%" fxFlexOrder.xs="4">
+        <mat-label>Email</mat-label>
+        <input matInput required formControlName="email">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+                Email is required.
+            </div>
+            <div *ngIf="email.errors.email">
+                Email must be valid.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="6" fxFlex.lt-md="49%" fxFlexOrder.lt-md="6" fxFlex.xs="99%" fxFlexOrder.xs="6">
+        <mat-label>Repeat password</mat-label>
+        <input matInput required formControlName="repeat_password">
+        <div *ngIf="repeat_password.invalid && (repeat_password.dirty || repeat_password.touched)" class="alert alert-danger">
+            <div *ngIf="repeat_password.errors.compose">
+                Repeat password should match password field.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <button mat-flat-button matStepperNext color="accent" fxFlexOrder="7" fxFlexOrder.lt-md="7">NEXT</button>
+</form>

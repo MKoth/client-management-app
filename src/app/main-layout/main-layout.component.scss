@@ -58,8 +58,28 @@ h1 {
 .mat-list-base{
     width: 100%;
     padding: 0!important;
+    .mat-list-item .mat-list-item-content{
+        padding: 0 24px!important;
+    }
+    .mat-list-item {
+        font-size: 14px;
+    }
 }
 
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+}
+  
+.no-background-color-card{
+    background-color: transparent;
+    box-shadow: none!important;
+}
+
+.avatar-menu:hover{
+    cursor: pointer;
+}
 // How to create dynamic theme
 // https://medium.com/angular-in-depth/build-truly-dynamic-theme-with-css-variables-539516e95837
 

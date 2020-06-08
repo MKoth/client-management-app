@@ -1,0 +1,24 @@
+@import '../../../theme.scss';
+
+.login-form-holder{
+    height: calc( 100vh - 64px );
+}
+
+.login-form{
+    width:100%;
+    max-width: 350px;
+    padding: 20px;
+}
+
+.alert, .alert-danger{
+    color: map-get($mat-red, 500);
+}
+
+.registration-link{
+    margin-top: 20px;
+    text-align: center;
+    a{
+        color: map-get($md-greenish, 900);
+        text-decoration: none;
+    }
+}

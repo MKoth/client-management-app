@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div
+    class="login-form-holder"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+>
+    <form
+        [formGroup]="loginForm"
+        class="login-form"
+        fxLayout="column"
+    >
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="login" required id="login" />
+            <div *ngIf="login.invalid && (login.dirty || login.touched)" class="alert alert-danger">
+                <div *ngIf="login.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="login.errors.email">
+                    Email must be valid.
+                </div>
+            </div>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput required formControlName="password">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                <div *ngIf="password.errors.required">
+                    Password is required.
+                </div>
+            </div>
+        </mat-form-field>
+        <button mat-flat-button color="accent">LOGIN</button>
+        <p class="registration-link">Not registered yet? <a routerLink="/registration">Register</a></p>
+    </form>
+</div>
+

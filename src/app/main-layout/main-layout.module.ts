@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list'
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatButtonModule,
     MatButtonToggleModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule,
+    MatCardModule
   ]
 })
 export class MainLayoutModule { }

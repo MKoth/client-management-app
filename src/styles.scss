@@ -1,0 +1,8 @@
+@import './theme.scss';
+
+.alert, .alert-danger{
+    color: map-get($mat-red, 500);
+}
+body {
+    margin: 0
+}

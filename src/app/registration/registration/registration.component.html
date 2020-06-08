@@ -1,1 +1,27 @@
-<p>registration works!</p>
+<h1 style="text-align: center;">Company Registration Steps:</h1>
+<mat-vertical-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="userForm.userForm">
+        <ng-template matStepLabel>User Info</ng-template>
+        <app-user-info #userForm></app-user-info>
+    </mat-step>
+    <mat-step [stepControl]="companyForm.companyForm">
+        <ng-template matStepLabel>Company Info</ng-template>
+        <app-company-info #companyForm></app-company-info>
+    </mat-step>
+    <!--<mat-step [stepControl]="secondFormGroup">
+        <working-hours></working-hours>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <social-links></social-links>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <media></media>
+    </mat-step>-->
+    <mat-step>
+        <ng-template matStepLabel>Success</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <a routerLink="/login"> Go To Login </a>
+        </div>
+    </mat-step>
+</mat-vertical-stepper>
