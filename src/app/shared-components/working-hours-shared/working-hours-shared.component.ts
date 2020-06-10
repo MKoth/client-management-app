@@ -26,8 +26,7 @@ export class WorkingHoursSharedComponent implements OnInit {
 
   weekDays = weekDays;
 
-  constructor() { 
-  }
+  constructor() { }
 
   ngOnInit(): void {
     //if(!this.hours.length){
@@ -37,7 +36,6 @@ export class WorkingHoursSharedComponent implements OnInit {
         to: new FormControl('', Validators.required)
       }, { validators: this.timeValuesRangeValidation }));
     //}
-    setTimeout(()=>{console.log(this.timeBlocks)}, 10000);
   }
 
   addWorkingHours(){
@@ -53,14 +51,9 @@ export class WorkingHoursSharedComponent implements OnInit {
   }
 
   timeValuesRangeValidation = (c: AbstractControl): { [key: string]: boolean } | null => {
-      console.log(c.get('from').value);
-      console.log(c.get('to').value);
       if(c.get('from').value && c.get('to').value){
         const from = moment(c.get('from').value, 'HH:mm');
         const to = moment(c.get('to').value, 'HH:mm');
-
-        console.log(c.get('from').value);
-        console.log(c.get('to').value);
         if (!from.isBefore(to)) {
           return { dateRangeError: true };
         }

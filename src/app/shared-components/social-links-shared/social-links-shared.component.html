@@ -1,1 +1,44 @@
-<p>social-links-shared works!</p>
+<div 
+    class="back-test"
+    fxLayout="column wrap"
+    fxLayoutGap="10px"
+    fxLayoutAlign="start start"
+>
+    <mat-card *ngFor="let socialsBlock of socialsBlocks.controls; index as i"
+        fxFlexFill 
+        fxLayout="row wrap" 
+        fxLayout.lt-md="column"
+        fxLayoutGap="20px"
+        fxLayoutAlign="space-around center"
+    >
+        <ng-container [formGroup]="socialsBlock">
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" fxFlexAlign="flex-start flex-start" fxFlexAlign.lt-md="stretch" fxFlex>
+                <mat-form-field appearance="outline">
+                    <mat-label>Link name</mat-label>
+                    <input matInput formControlName="name">
+                    <div *ngIf="socialsBlock.get('name').invalid && (socialsBlock.get('name').dirty || socialsBlock.get('name').touched)" class="alert alert-danger">
+                        <div *ngIf="socialsBlock.get('name').errors.required">
+                            Name time is required.
+                        </div>
+                    </div>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Link url</mat-label>
+                    <input matInput formControlName="url">
+                    <div *ngIf="socialsBlock.get('url').invalid && (socialsBlock.get('url').dirty || socialsBlock.get('url').touched)" class="alert alert-danger">
+                        <div *ngIf="socialsBlock.get('url').errors.required">
+                            Link url is required.
+                        </div>
+                        <div *ngIf="socialsBlock.get('url').errors.pattern">
+                            Link url Should be valid.
+                        </div>
+                    </div>
+                </mat-form-field>
+            </div>
+
+        </ng-container>
+        <button mat-flat-button matStepperNext color="warn" (click)="removeSocialLinks(i)">REMOVE SOCIAL LINKS</button>
+    </mat-card>
+    <button class="add-working-time-button" mat-flat-button matStepperNext color="accent" (click)="addSocialLinks()">ADD COMPANY SOCIAL LINKS BLOCK</button>
+</div>
