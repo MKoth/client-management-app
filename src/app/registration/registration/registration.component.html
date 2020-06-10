@@ -1,5 +1,5 @@
 <h1 style="text-align: center;">Company Registration Steps:</h1>
-<mat-vertical-stepper [linear]="false" #stepper>
+<mat-vertical-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="userForm.userForm">
         <ng-template matStepLabel>User Info</ng-template>
         <app-user-info #userForm></app-user-info>
@@ -24,9 +24,24 @@
             <button mat-flat-button matStepperNext color="accent">NEXT</button>
         </div>
     </mat-step>
-    <!--<mat-step [stepControl]="secondFormGroup">
-        <media></media>
-    </mat-step>-->
+    <mat-step>
+        <ng-template matStepLabel>Company Media</ng-template>
+        <div 
+            fxFlexFill 
+            fxLayout="row wrap" 
+            fxLayout.lt-md="column"
+            fxLayoutGap="20px"
+            fxLayoutAlign="space-around center"
+            class="media-inputs-holder"
+        >
+            <app-media-upload-form-shared [squareAspect]="true" header="Company/Owner Image"></app-media-upload-form-shared>
+            <app-media-upload-form-shared header="Company logo Image"></app-media-upload-form-shared>
+        </div>
+        <div>
+            <button mat-flat-button matStepperPrevious>BACK</button>
+            <button mat-flat-button matStepperNext color="accent">NEXT</button>
+        </div>
+    </mat-step>
     <mat-step>
         <ng-template matStepLabel>Success</ng-template>
         <p>You are now done.</p>

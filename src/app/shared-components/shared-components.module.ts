@@ -9,11 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { DragAndDropDirective } from './drag-and-drop.directive';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
 @NgModule({
-  declarations: [WorkingHoursSharedComponent, SocialLinksSharedComponent, MediaUploadFormSharedComponent],
+  declarations: [WorkingHoursSharedComponent, SocialLinksSharedComponent, MediaUploadFormSharedComponent, DragAndDropDirective],
   imports: [
     CommonModule,
     MatButtonToggleModule,
@@ -22,7 +24,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ImageCropperModule
   ],
   exports: [WorkingHoursSharedComponent, SocialLinksSharedComponent, MediaUploadFormSharedComponent]
 })
