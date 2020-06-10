@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, ValidatorFn, AbstractControl} from '@angular/forms';
+import * as moment from 'moment';
 
 const weekDays = [
   {name:'Sun', value:'SU'},
@@ -34,8 +35,9 @@ export class WorkingHoursSharedComponent implements OnInit {
         weekdays: new FormControl(['MO', 'TU', 'WE', 'TH', 'FR'], Validators.required),
         from: new FormControl('', Validators.required),
         to: new FormControl('', Validators.required)
-      }));
+      }, { validators: this.timeValuesRangeValidation }));
     //}
+    setTimeout(()=>{console.log(this.timeBlocks)}, 10000);
   }
 
   addWorkingHours(){
@@ -43,11 +45,27 @@ export class WorkingHoursSharedComponent implements OnInit {
       weekdays: new FormControl(['MO', 'TU', 'WE', 'TH', 'FR'], Validators.required),
       from: new FormControl('', Validators.required),
       to: new FormControl('', Validators.required)
-    }));
+    }, { validators: this.timeValuesRangeValidation }));
   }
 
   removeWorkingHours(index: number){
     this.timeBlocks.removeAt(index);
+  }
+
+  timeValuesRangeValidation = (c: AbstractControl): { [key: string]: boolean } | null => {
+      console.log(c.get('from').value);
+      console.log(c.get('to').value);
+      if(c.get('from').value && c.get('to').value){
+        const from = moment(c.get('from').value, 'HH:mm');
+        const to = moment(c.get('to').value, 'HH:mm');
+
+        console.log(c.get('from').value);
+        console.log(c.get('to').value);
+        if (!from.isBefore(to)) {
+          return { dateRangeError: true };
+        }
+      }
+      return null;
   }
 
 }

@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserInfoComponent } from './registration/user-info/user-info.component';
 import { CompanyInfoComponent } from './registration/company-info/company-info.component';
 import { MediaComponent } from './registration/media/media.component';
-import { WorkingHoursComponent } from './registration/working-hours/working-hours.component';
 import { SocialLinksComponent } from './registration/social-links/social-links.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [RegistrationComponent, UserInfoComponent, CompanyInfoComponent, MediaComponent, WorkingHoursComponent, SocialLinksComponent],
+  declarations: [RegistrationComponent, UserInfoComponent, CompanyInfoComponent, MediaComponent, SocialLinksComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
