@@ -8,10 +8,15 @@
         <ng-template matStepLabel>Company Info</ng-template>
         <app-company-info #companyForm></app-company-info>
     </mat-step>
-    <!--<mat-step [stepControl]="secondFormGroup">
-        <working-hours></working-hours>
+    <mat-step [stepControl]="sharedForm.timeBlocks">
+        <ng-template matStepLabel>Working Hours</ng-template>
+        <app-working-hours-shared #sharedForm></app-working-hours-shared>
+        <div>
+            <button mat-flat-button matStepperPrevious>BACK</button>
+            <button mat-flat-button matStepperNext color="accent">NEXT</button>
+        </div>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
+    <!--<mat-step [stepControl]="secondFormGroup">
         <social-links></social-links>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">

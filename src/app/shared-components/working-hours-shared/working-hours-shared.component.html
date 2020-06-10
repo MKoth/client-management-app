@@ -1,1 +1,35 @@
-<p>working-hours-shared works!</p>
+<div 
+    class="back-test"
+    fxLayout="column wrap"
+    fxLayoutGap="10px"
+    fxLayoutAlign="start start"
+>
+    <mat-card *ngFor="let timeBlock of timeBlocks.controls; index as i"
+        fxFlexFill 
+        fxLayout="row wrap" 
+        fxLayout.lt-md="column"
+        fxLayoutGap="20px"
+        fxLayoutAlign="space-around center"
+    >
+        <ng-container [formGroup]="timeBlock">
+
+            <mat-button-toggle-group  [multiple]="true" formControlName="weekdays" name="weekdays" aria-label="Week days">
+                <mat-button-toggle *ngFor="let day of weekDays" [value]="day.value">{{day.name}}</mat-button-toggle>
+            </mat-button-toggle-group>
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" fxFlexAlign="flex-start flex-start" fxFlexAlign.lt-md="stretch">
+                <mat-form-field appearance="outline" fxFlex="1 1">
+                    <mat-label>From time</mat-label>
+                    <input matInput type="time" formControlName="from" name="from">
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1">
+                    <mat-label>To time</mat-label>
+                    <input matInput type="time" formControlName="to" name="to">
+                </mat-form-field>
+            </div>
+
+        </ng-container>
+        <button mat-flat-button matStepperNext color="warn" (click)="removeWorkingHours(i)">REMOVE HOUR</button>
+    </mat-card>
+    <button class="add-working-time-button" mat-flat-button matStepperNext color="accent" (click)="addWorkingHours()">ADD WORKING HOUR</button>
+</div>

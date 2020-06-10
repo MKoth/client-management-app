@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { WorkingHoursSharedComponent } from '../../../shared-components/working-hours-shared/working-hours-shared.component';
 
 @Component({
   selector: 'app-working-hours',
@@ -8,12 +9,10 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class WorkingHoursComponent implements OnInit {
 
-  workingTimeForm:FormGroup;
+  @ViewChild(WorkingHoursSharedComponent) public sharedForm: WorkingHoursSharedComponent;
 
-  constructor() {
-    this.workingTimeForm = new FormGroup({});
-  }
+  constructor() {console.log(this.sharedForm)}
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { setTimeout(()=>{console.log(this.sharedForm)}) }
 
 }

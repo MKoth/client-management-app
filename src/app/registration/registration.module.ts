@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
 
 const routes: Routes = [
   { path: '', component: RegistrationComponent }
@@ -33,7 +34,8 @@ const routes: Routes = [
     MatTableModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    SharedComponentsModule
   ],
   exports: [
     RouterModule
