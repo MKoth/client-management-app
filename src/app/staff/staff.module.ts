@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { StaffComponent } from './staff/staff.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { Routes, RouterModule } from '@angular/router';
+import { DxSchedulerModule } from 'devextreme-angular';
+import { SharedDirectivesModule } from '../shared-directives/shared-directives.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'staff', pathMatch: 'full' },
@@ -14,7 +16,9 @@ const routes: Routes = [
   declarations: [StaffComponent, ScheduleComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    DxSchedulerModule,
+    SharedDirectivesModule
   ],
   exports: [
     RouterModule

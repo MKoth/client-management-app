@@ -35,7 +35,7 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule
   ],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
   ],
   bootstrap: [AppComponent]
 })
