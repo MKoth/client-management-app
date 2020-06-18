@@ -1,9 +1,62 @@
-<div appResizeDetector (widthChanged)="rerenderScheduler()"></div>
+<div appResizeDetector (widthChanged)="rerenderScheduler()">
 <dx-scheduler
     #scheduler
-    [dataSource]="appointmentsData"
-    [views]='["week", "month"]'
+    [firstDayOfWeek]="1"
+    [dataSource]="scheduleData"
+    [views]='["Day View", "3 Days View", "Week View"]'
     currentView="week"
-    [currentDate]="currentDate"
-    [startDayHour]="9">
+    [startDayHour]="getStartDayHour()"
+    [showAllDayPanel]="false"
+    [showCurrentTimeIndicator]="false"
+    [endDayHour]="getEndDayHour()"
+    [groups]="['staffId']"
+    dataCellTemplate="dataCellTemplate"
+    resourceCellTemplate="resourceCellTemplate"
+    (onAppointmentFormOpening)="onAppointmentFormOpening($event)"
+    (onAppointmentAdded)="onAppointmentAdded($event)">
+
+    <dxi-view
+        type="week"
+        name="Week View"
+        groupOrientation="vertical"
+        [cellDuration]="60"
+        [intervalCount]="1">
+    </dxi-view>
+
+    <dxi-view
+        type="day"
+        name="3 Days View"
+        groupOrientation="vertical"
+        [cellDuration]="30"
+        [intervalCount]="3">
+    </dxi-view>
+
+    <dxi-view
+        type="day"
+        name="Day View"
+        groupOrientation="vertical"
+        [cellDuration]="30"
+        [intervalCount]="1">
+    </dxi-view>
+
+    <dxi-resource
+        [dataSource]="staffData"
+        fieldExpr="staffId"
+        label="Staff"
+        [allowMultiple]="false"
+    ></dxi-resource>
+
+    <div *dxTemplate="let employee of 'resourceCellTemplate'">
+        <div class='employee-name-holder' [style.background]="employee.color">
+            <h2>{{employee.text}}</h2>
+        </div>
+    </div>
+
+    <div *dxTemplate="let dataCell of 'dataCellTemplate'"
+        [ngClass]="{ 'disable-date': isCompanyWorkingHours(dataCell.startDate, dataCell.endDate) }"
+    >
+      {{dataCell.text}}
+    </div>
+
 </dx-scheduler>
+</div>

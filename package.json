@@ -26,9 +26,11 @@
     "@ngrx/store": "^9.2.0",
     "devextreme": "20.1.4",
     "devextreme-angular": "20.1.4",
+    "memoizee": "^0.4.14",
     "moment": "^2.26.0",
     "ngx-image-cropper": "^3.1.9",
     "ngx-perfect-scrollbar": "^9.0.0",
+    "rrule": "^2.6.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

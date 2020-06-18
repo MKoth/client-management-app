@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StaffComponent } from './staff/staff.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { Routes, RouterModule } from '@angular/router';
-import { DxSchedulerModule } from 'devextreme-angular';
+import { DxSchedulerModule, DxTemplateModule } from 'devextreme-angular';
 import { SharedDirectivesModule } from '../shared-directives/shared-directives.module';
 
 const routes: Routes = [
@@ -18,6 +18,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     DxSchedulerModule,
+    DxTemplateModule,
     SharedDirectivesModule
   ],
   exports: [
