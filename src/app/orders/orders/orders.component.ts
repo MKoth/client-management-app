@@ -27,6 +27,7 @@ export class WorkingHours {
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
+
 export class OrdersComponent implements OnInit {
 
   @ViewChild('scheduler') scheduler:DxSchedulerComponent;
@@ -78,6 +79,20 @@ export class OrdersComponent implements OnInit {
     }
   ];
 
+  categories: any[] = [
+    {id:'rwe45t4t-gfd45-gdfd', name:'Drawing Category', parent: null},
+    {id:'rwegd5745t4t-khd4-ui65w', name:'Drawing Sub Category', parent: 'rwe45t4t-gfd45-gdfd'},
+    {id:'tre5hgh6-dg654-fds43', name:'Cutting Category', parent: null},
+  ]
+
+  services: any[] = [
+    {id:'1321-gfd-543fe4-fggd44g4', name:'Drawing', categoryId:'rwe45t4t-gfd45-gdfd', staffIds:['qereffd-fdbgd-345gg45gdg4g-gtdg5-g5gd', 'kj-dsdgh-345j4-ervvc-s454vf4']},
+    {id:'red4-3r5-fd567-hgd445', name:'Cleaning', categoryId:'rwegd5745t4t-khd4-ui65w', staffIds:['h2112-jkeu-432n-fdsss']},
+    {id:'fre567g-vdh9-46yhr4-gf56h6g', name:'Cutting', categoryId:'tre5hgh6-dg654-fds43', staffIds:['kj-dsdgh-345j4-ervvc-s454vf4']},
+  ];
+
+  servicesList: any[] = [];
+
   rulesetsByStaff: any; 
 
   companyWorkingHours: WorkingHours[] = [
@@ -88,7 +103,7 @@ export class OrdersComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //console.log(this.dayInSchedules(new Date('2020-06-19T09:00:00.000Z'), 'qereffd-fdbgd-345gg45gdg4g-gtdg5-g5gd'));
+    this.servicesList = this.createListOfServices();
   }
   @memoize()
   dayInSchedules(testDay:Date, staffId:String):Array<any>{
@@ -127,14 +142,104 @@ export class OrdersComponent implements OnInit {
   }
 
   onAppointmentFormOpening(data) {
+    let staffId = data.appointmentData.staffId;
+    console.log(data.appointmentData);
     let form = data.form;
     let formItems = data.form.option("items");
+    console.log(formItems);
     form.itemOption("allDay", "visible", false);
     form.itemOption("description", "visible", false);
     form.itemOption("repeat", "visible", false);
+    form.itemOption("text", "visible", false);
     form.itemOption("startDate", {editorOptions:{type:'time'}});
     form.itemOption("endDate", {editorOptions:{type:'time'}});
-    
+
+    if (!formItems[0].items.find(i => i.dataField === "service")) {
+      formItems[0].items.push({
+        dataField: "service",
+        editorType: "dxRadioGroup",
+        isRequired: true
+      });
+    }
+    if (!formItems[0].items.find(i => i.dataField === "clientName")) {
+      formItems[0].items.push({label: {
+            text: "Client Name"
+        },
+        dataField: "clientName",
+        editorType: "dxTextBox",
+        isRequired: true
+      });
+    }
+
+    if (!formItems[0].items.find(i => i.dataField === "clientName")) {
+      formItems[0].items.push({label: {
+            text: "Client Name"
+        },
+        dataField: "clientName",
+        editorType: "dxTextBox",
+        isRequired: true
+      });
+    }
+
+    if (!formItems[0].items.find(i => i.dataField === "clientPhone")) {
+      formItems[0].items.push({label: {
+            text: "Client Phone"
+        },
+        dataField: "clientPhone",
+        editorType: "dxNumberBox",
+        isRequired: true
+      });
+    }
+
+    if (!formItems[0].items.find(i => i.dataField === "clientEmail")) {
+      formItems[0].items.push({label: {
+            text: "Client Email"
+        },
+        dataField: "clientEmail",
+        editorType: "dxTextBox",
+        isRequired: true,
+        editorOptions: {
+          mode: 'email'
+        },
+        validationRules: [
+          {type:'email'}
+        ]
+      });
+    }
+
+    if (!formItems[0].items.find(i => i.dataField === "clientDetails")) {
+      formItems[0].items.push({label: {
+            text: "Client Details"
+        },
+        dataField: "clientDetails",
+        editorType: "dxTextArea",
+      });
+    }
+
+    form.itemOption('service', {
+      editorOptions: {
+        dataSource: Array.from(this.servicesList.filter(srv=>srv.staffIds.includes(staffId)), srv=>srv.id),
+        itemTemplate: (itemData) => {
+          console.log('template update');
+          return this.servicesList.find(srv=>srv.id===itemData).name;
+        }
+      }
+    });
+
+    form.itemOption("staffId", {
+      editorOptions: {
+        onValueChanged: (args) => {
+          let staffId = args.value;
+          form.itemOption('service', {
+            editorOptions: {
+              dataSource: Array.from(this.servicesList.filter(srv=>srv.staffIds.includes(staffId)), srv=>srv.id)
+            }
+          });
+        }
+      }
+    });
+
+    data.form.option("items", formItems);
   }
 
   onAppointmentAdded(data){
@@ -185,6 +290,20 @@ export class OrdersComponent implements OnInit {
     if(this.timeInSchedule(shedulesList, moment(startDate).add('minutes', 1).toDate())){
       return {backgroundColor:this.staffData.find(staff=>staff.id===staffId).color+'33', height: '100%'};
     }
+  }
+
+  createListOfServices():Array<any>{
+    let servicesList = [];
+    this.services.forEach(service=>{
+      let srvLongName = service.name;
+      let currentCategory = this.categories.find(cat=>cat.id===service.categoryId);
+      do {
+        srvLongName = currentCategory.name+'/'+srvLongName;
+        currentCategory = this.categories.find(cat=>cat.id===currentCategory.parent);
+      } while (currentCategory);
+      servicesList.push({name: srvLongName, id: service.id, staffIds: service.staffIds});
+    });
+    return servicesList;
   }
 
 }
