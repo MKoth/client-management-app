@@ -1,1 +1,63 @@
-<p>groups works!</p>
+<dx-data-grid id="gridContainer" [dataSource]="groups" [showBorders]="true">
+    <dxo-editing 
+        mode="form"
+        [allowUpdating]="true"
+        [allowAdding]="true"
+        [allowDeleting]="true"
+    >
+    </dxo-editing>
+    <dxi-column #column dataField="name" [editorOptions]="{isRequired:true, required:true}">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="description"></dxi-column>
+    {{testData(column)}}
+
+    <dxi-column dataField="users" cellTemplate="usersTemplate" editCellTemplate="checkBoxListUsersSelector"></dxi-column>
+    <dxi-column dataField="permissions" cellTemplate="permissionsTemplate" editCellTemplate="permissionsForGroupSettings"></dxi-column>
+
+    <div *dxTemplate="let data of 'usersTemplate'">
+        {{getUsersList(data.value)}}
+    </div>
+
+    <div *dxTemplate="let data of 'permissionsTemplate'">
+        {{getPermissionsList(data.value)}}
+    </div>
+
+    <div *dxTemplate="let data of 'checkBoxListUsersSelector'">
+        <section>
+            <mat-checkbox 
+                *ngFor="let user of users" 
+                style="margin-right: 10px;" 
+                [checked]="isUserChecked(user.id, data.value)"
+                (change)="onCheckBoxChange($event, user.id, data)"
+            >{{user.first_name}} {{user.last_name}}</mat-checkbox>
+        </section>
+    </div>
+
+    <div *dxTemplate="let data of 'permissionsForGroupSettings'" fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <section *ngFor="let permission of permissions"  fxLayout="column" fxLayoutAlign="center" style="padding: 5px;">
+            <mat-slide-toggle #toggle style="margin-bottom: 10px; text-transform: capitalize;" 
+                [checked]="isPermissionChecked(permission, data.value)"
+                (change)="onToggleChange($event, permission, data)"
+            >
+                {{permission}}
+            </mat-slide-toggle>
+            <mat-radio-group
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+                fxLayout="column"
+                [value]="toggle.checked?getPermissionValue(permission, data.value):'read'"
+                (change)="onPermissionChange($event, permission, data)"
+            >
+                <mat-radio-button value="read" style="margin-bottom: 5px;"
+                    [disabled]="!toggle.checked"
+                >
+                    Reading
+                </mat-radio-button>
+                <mat-radio-button value="write" [disabled]="!toggle.checked">
+                    Writing
+                </mat-radio-button>
+            </mat-radio-group>
+        </section>
+    </div>
+</dx-data-grid>

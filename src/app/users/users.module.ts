@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { GroupsComponent } from './groups/groups.component';
 import { UsersComponent } from './users/users.component';
 import { Routes, RouterModule } from '@angular/router';
+import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRadioModule } from '@angular/material/radio';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const routes: Routes = [
   { path: '', redirectTo: 'groups', pathMatch: 'full' },
@@ -14,7 +19,13 @@ const routes: Routes = [
   declarations: [GroupsComponent, UsersComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    DxDataGridModule,
+    DxTemplateModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatRadioModule,
+    FlexLayoutModule
   ],
   exports: [
     RouterModule
