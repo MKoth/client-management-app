@@ -1,4 +1,8 @@
-<dx-data-grid id="gridContainer" [dataSource]="groups" [showBorders]="true">
+<dx-data-grid id="gridContainer" [dataSource]="groups" [showBorders]="true"
+    (onRowInserted)="deleteUsersFromOtherGroups($event)" 
+    (onRowInserting)="prepopulateEmptyData($event)" 
+    (onRowUpdated)="deleteUsersFromOtherGroups($event)"
+>
     <dxo-editing 
         mode="form"
         [allowUpdating]="true"
@@ -6,11 +10,10 @@
         [allowDeleting]="true"
     >
     </dxo-editing>
-    <dxi-column #column dataField="name" [editorOptions]="{isRequired:true, required:true}">
+    <dxi-column dataField="name" [editorOptions]="{isRequired:true, required:true}">
         <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>
     <dxi-column dataField="description"></dxi-column>
-    {{testData(column)}}
 
     <dxi-column dataField="users" cellTemplate="usersTemplate" editCellTemplate="checkBoxListUsersSelector"></dxi-column>
     <dxi-column dataField="permissions" cellTemplate="permissionsTemplate" editCellTemplate="permissionsForGroupSettings"></dxi-column>

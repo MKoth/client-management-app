@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-media-upload-form-shared',
@@ -9,6 +9,9 @@ export class MediaUploadFormSharedComponent implements OnInit {
 
   @Input() squareAspect: Boolean = false;
   @Input() header: String = '';
+  @Input() defaultImage: String = null;
+  @Output() onImageUpdated = new EventEmitter<string>();
+  @Output() onImageDeleted = new EventEmitter<string>();
 
   constructor() { }
 
@@ -26,6 +29,7 @@ export class MediaUploadFormSharedComponent implements OnInit {
   imageCropped(image){
     console.log(image);
     this.croppedImage = image;
+    
   }
 
   imageLoaded(){}
@@ -38,10 +42,13 @@ export class MediaUploadFormSharedComponent implements OnInit {
     this.uploadedFile = null;
     this.croppedImage = null;
     this.isImageCropped = false;
+    this.defaultImage = null;
+    this.onImageDeleted.emit();
   }
 
   cropImage(){
     this.isImageCropped = true;
+    this.onImageUpdated.emit(this.croppedImage.base64);
   }
 
   ngOnInit(): void {}

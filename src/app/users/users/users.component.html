@@ -1,1 +1,70 @@
-<p>users works!</p>
+<dx-data-grid #grid id="gridContainer" [dataSource]="users" [showBorders]="true"
+        (onEditingStart)="toggleIsAdding(false)"
+        (onInitNewRow)="toggleIsAdding(true);logEvent($event)"
+        (onEditorPreparing)="getCurrentFormData($event)"
+>       
+    <dxo-editing
+        mode="form"
+        [allowUpdating]="true"
+        [allowAdding]="true"
+        [allowDeleting]="true"
+    >
+        <dxo-form [customizeItem]="customizeItem">
+            <dxi-item itemType="group" caption="Profile Image">
+                <dxi-item dataField="photo"></dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="Personal Data"> 
+                <dxi-item dataField="first_name">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="last_name">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="group">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="description" editorType="dxTextArea"></dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="Contacts">
+                <dxi-item dataField="phone">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="email">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxi-validation-rule type="email"></dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+            
+            <dxi-item itemType="group" caption="Auth Data">
+                <dxi-item dataField="pasword">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="repeat_pasword">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxi-validation-rule type="custom" [reevaluate]="true"
+                            message="Password and Repeat Password do not match" [validationCallback]="comparePasswords"></dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+        </dxo-form>
+    </dxo-editing>
+    <dxi-column dataField="first_name"></dxi-column>
+    <dxi-column dataField="last_name"></dxi-column>
+    <dxi-column dataField="description"></dxi-column>
+    <dxi-column dataField="group">
+        <dxo-lookup
+            [dataSource]="groups_list"
+            displayExpr="name"
+            valueExpr="id">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="phone"></dxi-column>
+    <dxi-column dataField="email"></dxi-column>
+    <dxi-column dataField="photo" [visible]="false" editCellTemplate="photoSettings"></dxi-column>
+    <dxi-column dataField="pasword"></dxi-column>
+    <dxi-column dataField="repeat_pasword"></dxi-column>
+
+    <div *dxTemplate="let data of 'photoSettings'">
+        <app-media-upload-form-shared [squareAspect]='true' [defaultImage]="data.value" (onImageUpdated)="data.setValue($event)" (onImageDeleted)="data.setValue(null)"></app-media-upload-form-shared>
+    </div>
+</dx-data-grid>

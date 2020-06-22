@@ -4,7 +4,7 @@
         
         
 
-        <div *ngIf="!uploadedFile">
+        <div *ngIf="!uploadedFile&&!defaultImage">
             <input type="file" #fileDropRef id="fileDropRef" accept="image/*" (change)="onFileSelected($event.target.files)"/>
             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="64" viewBox="0 0 63 64">
                 <g fill="#3B454F" fill-rule="nonzero">
@@ -34,9 +34,9 @@
             ></image-cropper>
             <button mat-flat-button matStepperNext color="warn" (click)="cropImage()">CROP IMAGE</button>
         </div>
-        <div *ngIf="croppedImage&&isImageCropped">
+        <div *ngIf="croppedImage&&isImageCropped||defaultImage&&!uploadedFile">
             <div class="delete_selected_image" (click)="deleteImage()">&#10060;</div>
-            <img [src]="croppedImage.base64" class="resulted-cropped-image">
+            <img [src]="croppedImage?croppedImage.base64:defaultImage" class="resulted-cropped-image">
         </div>
 
 

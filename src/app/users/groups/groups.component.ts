@@ -18,6 +18,10 @@ export class GroupsComponent implements OnInit {
     'users', 'staff', 'services', 'categories', 'company', 'widget', 'sales'
   ];
 
+  test(data){
+    console.log(data);
+  }
+
   groups:Array<any>=[
     {id:'wqer', name:'Group 1', users:['1dds', '43de3', 'hjl'], permissions:[
         {type:'users', permission:'read'},
@@ -39,16 +43,11 @@ export class GroupsComponent implements OnInit {
     return permissions?Array.from(permissions, permission=>`${permission.type}(${permission.permission})`).join(', '):'Group without permissions';
   }
 
-  testData(data){
-    console.log(data);
-  }
-
   isUserChecked(userId, permissionUsers):boolean{
     return permissionUsers?permissionUsers.includes(userId):false;
   }
 
   isPermissionChecked(permission, permissions){
-    //console.log()
     return permissions?permissions.find(perm=>perm.type===permission):false;
   }
 
@@ -64,7 +63,6 @@ export class GroupsComponent implements OnInit {
   }
 
   onToggleChange(e, permission, data){
-    console.log(data);
     if(data.value)
       e.checked?data.setValue([...data.value, {type: permission, permission: "read"}]):data.setValue(data.value.filter(perm=>perm.type!==permission));
     else
@@ -73,6 +71,18 @@ export class GroupsComponent implements OnInit {
 
   onPermissionChange(e, permission, data){
     data.setValue(data.value.map(perm=>perm.type===permission?{...perm, permission:e.value }:perm));
+  }
+
+  deleteUsersFromOtherGroups(e){
+    console.log(e);
+    //console.log(this.groups);
+    this.groups = this.groups.map(group=>{
+      return (group.id!==e.data.id||group.__KEY__!==e.data.__KEY__)?{...group, users: group.users.filter(usr=>!e.data.users.includes(usr))}:group;
+    });
+  }
+
+  prepopulateEmptyData(e){
+    e.data = {...e.data, permissions:e.data.permissions?e.data.permissions:[], users:e.data.users?e.data.users:[] };
   }
 
   constructor() { }

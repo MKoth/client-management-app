@@ -8,6 +8,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'groups', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
     MatCheckboxModule,
     MatSlideToggleModule,
     MatRadioModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedComponentsModule
   ],
   exports: [
     RouterModule
