@@ -1,1 +1,28 @@
-<p>categories works!</p>
+<dx-tree-list
+    id="categories"
+    [dataSource]="orderedCategories"
+    [rootValue]="null"
+    keyExpr="id"
+    parentIdExpr="parent"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    [sorting]="{mode:'none'}"
+    [expandedRowKeys]="[]"
+    (onRowInserting)="setOrder($event)" >
+    <dxo-editing
+        #editing
+        mode="form"
+        [allowUpdating]="true"
+        [allowDeleting]="true"
+        [allowAdding]="true">
+    </dxo-editing>
+    <dxo-row-dragging
+        [allowDropInsideItem]="true"
+        [allowReordering]="true"
+        [showDragIcons]="true"
+        [onDragChange]="onDragChange"
+        [onReorder]="onReorder"
+    ></dxo-row-dragging>
+    <dxi-column dataField="name"></dxi-column>
+</dx-tree-list>

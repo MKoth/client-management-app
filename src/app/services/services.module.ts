@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
 import { Routes, RouterModule } from '@angular/router';
+import { DxTreeListModule, DxTemplateModule } from 'devextreme-angular';
 
 const routes: Routes = [
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
@@ -14,7 +15,9 @@ const routes: Routes = [
   declarations: [CategoriesComponent, ServicesComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    DxTreeListModule,
+    DxTemplateModule
   ],
   exports: [
     RouterModule
