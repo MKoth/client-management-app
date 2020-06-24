@@ -22,8 +22,8 @@ export class ServicesComponent implements OnInit {
   ];
 
   services: Array<any> = [
-    {title:'Service 1', category:'rwegd5745t4t-khd4-ui65w', duration:130, interval:30, price:25, staff:['h2112-jkeu-432n-fdsss', 'kj-dsdgh-345j4-ervvc-s454vf4']},
-    {title:'Service 2', category:'tre5hgh6-dg654-fds43', duration:30, interval:60, price:15, staff:['qereffd-fdbgd-345gg45gdg4g-gtdg5-g5gd']},
+    {id:'543ggt-5gt4g-f3f3v', title:'Service 1', category:'rwegd5745t4t-khd4-ui65w', duration:130, interval:30, price:25, staff:['h2112-jkeu-432n-fdsss', 'kj-dsdgh-345j4-ervvc-s454vf4']},
+    {id:'43fe35-fd4f56-bg45b',title:'Service 2', category:'tre5hgh6-dg654-fds43', duration:30, interval:60, price:15, staff:['qereffd-fdbgd-345gg45gdg4g-gtdg5-g5gd']},
   ];
 
   constructor() { }
@@ -50,42 +50,6 @@ export class ServicesComponent implements OnInit {
 
   mathFloor(number){
     return Math.floor(number);
-  }
-
-  getMinutesRange(){
-    //return Array.from(Array(30).keys()).map(n=>n*10+10)
-    return [
-      10,
-      20,
-      30,
-      40,
-      50,
-      60,
-      70,
-      80,
-      90,
-      100,
-      110,
-      120,
-      130,
-      140,
-      150,
-      160,
-      170,
-      180,
-      190,
-      200,
-      210,
-      220,
-      230,
-      240,
-      250,
-      260,
-      270,
-      280,
-      290,
-      300
-    ]
   }
 
 }
