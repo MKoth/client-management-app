@@ -61,8 +61,8 @@
     <dxi-column dataField="phone"></dxi-column>
     <dxi-column dataField="email"></dxi-column>
     <dxi-column dataField="photo" [visible]="false" editCellTemplate="photoSettings"></dxi-column>
-    <dxi-column dataField="pasword"></dxi-column>
-    <dxi-column dataField="repeat_pasword"></dxi-column>
+    <dxi-column dataField="pasword" [visible]="false"></dxi-column>
+    <dxi-column dataField="repeat_pasword" [visible]="false"></dxi-column>
 
     <div *dxTemplate="let data of 'photoSettings'">
         <app-media-upload-form-shared [squareAspect]='true' [defaultImage]="data.value" (onImageUpdated)="data.setValue($event)" (onImageDeleted)="data.setValue(null)"></app-media-upload-form-shared>

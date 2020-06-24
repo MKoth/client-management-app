@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
 import { Routes, RouterModule } from '@angular/router';
-import { DxTreeListModule, DxTemplateModule } from 'devextreme-angular';
+import { DxTreeListModule, DxTemplateModule, DxDataGridModule } from 'devextreme-angular';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const routes: Routes = [
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
@@ -17,7 +18,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     DxTreeListModule,
-    DxTemplateModule
+    DxTemplateModule,
+    DxDataGridModule,
+    MatCheckboxModule
   ],
   exports: [
     RouterModule

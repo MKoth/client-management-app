@@ -1,1 +1,52 @@
-<p>services works!</p>
+<dx-data-grid id="gridContainer" [dataSource]="services" [showBorders]="true"
+>
+    <dxo-editing 
+        mode="form"
+        [allowUpdating]="true"
+        [allowAdding]="true"
+        [allowDeleting]="true"
+    >
+
+    </dxo-editing>
+    <dxi-column dataField="title">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="category">
+        <dxo-lookup
+            [dataSource]="categories"
+            displayExpr="name"
+            valueExpr="id">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="duration" caption="Duration (in minutes)" dataType="number" cellTemplate="durationTemplate">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="price" dataType="number" cellTemplate="priceTemplate">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="staff" cellTemplate="staffsTemplate" editCellTemplate="checkBoxListStaffsSelector"></dxi-column>
+
+    <div *dxTemplate="let data of 'durationTemplate'">
+        {{mathFloor(data.value/60)?mathFloor(data.value/60)+' h':''}} {{data.value%60}} min
+    </div>
+
+    <div *dxTemplate="let data of 'staffsTemplate'">
+        {{getStaffsList(data.value)}}
+    </div>
+
+    <div *dxTemplate="let data of 'priceTemplate'">
+        ${{(data.value)}}
+    </div>
+
+    <div *dxTemplate="let data of 'checkBoxListStaffsSelector'">
+        <section>
+            <mat-checkbox 
+                *ngFor="let staff of staff_list" 
+                style="margin-right: 10px;" 
+                [checked]="isStaffChecked(staff.id, data.value)"
+                (change)="onCheckBoxChange($event, staff.id, data)"
+            >{{staff.first_name}} {{staff.last_name}}</mat-checkbox>
+        </section>
+    </div>
+</dx-data-grid>
