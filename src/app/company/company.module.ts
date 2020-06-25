@@ -5,6 +5,15 @@ import { MediaComponent } from './media/media.component';
 import { WorkingTimeComponent } from './working-time/working-time.component';
 import { SocialLinksComponent } from './social-links/social-links.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   { path: '', redirectTo: 'info', pathMatch: 'full' },
@@ -18,7 +27,17 @@ const routes: Routes = [
   declarations: [InfoComponent, MediaComponent, WorkingTimeComponent, SocialLinksComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatTableModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatSelectModule,
+    SharedComponentsModule,
+    MatCardModule
   ],
   exports: [
     RouterModule
