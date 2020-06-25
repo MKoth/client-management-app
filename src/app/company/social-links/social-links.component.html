@@ -1,1 +1,6 @@
-<p>social-links works!</p>
+<div fxLayout="column">
+    <app-social-links-shared #sharedLink [defaultValues]="links" (onChange)="onSocialsChanged($event)"></app-social-links-shared>
+    <div fxFlex="100%" fxLayout="row wrap"  fxLayoutAlign="end start">
+        <button mat-flat-button [disabled]="!isSocialsChanged||sharedLink.socialsBlocks.invalid" color="accent" (click)="saveSocials()">UPDATE SOCIALS</button>
+    </div>
+</div>

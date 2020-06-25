@@ -9,6 +9,22 @@ export class SocialLinksComponent implements OnInit {
 
   constructor() { }
 
+  isSocialsChanged:boolean = false;
+
+  links = [
+    {name:'vk', url:'vk.com/uber'},
+    {name:'facebook', url:'facebook.com/uber'}
+  ];
+
+  onSocialsChanged(data){
+    this.links = data;
+    this.isSocialsChanged = true;
+  }
+
+  saveSocials(){
+    this.isSocialsChanged = false;
+  }
+
   ngOnInit(): void {
   }
 
