@@ -1,1 +1,6 @@
-<p>working-time works!</p>
+<div fxLayout="column">
+    <app-working-hours-shared #sharedHours [defaultValues]="hours" (onChange)="onHoursChanged($event)"></app-working-hours-shared>
+    <div fxFlex="100%" fxLayout="row wrap"  fxLayoutAlign="end start">
+        <button mat-flat-button [disabled]="!isHoursChanged||sharedHours.timeBlocks.invalid" color="accent" (click)="saveHours()">UPDATE WORKING HOURS</button>
+    </div>
+</div>

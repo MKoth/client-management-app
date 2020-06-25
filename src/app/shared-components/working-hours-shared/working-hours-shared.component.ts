@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, ValidatorFn, AbstractControl} from '@angular/forms';
 import * as moment from 'moment';
 
@@ -28,14 +28,34 @@ export class WorkingHoursSharedComponent implements OnInit {
 
   constructor() { }
 
+  @Input() defaultValues:Array<{weekdays:Array<string>, from:string, to:string}> = null;
+
+  @Output() onChange:EventEmitter<Array<{weekdays:Array<string>, from:string, to:string}>> = new EventEmitter();
+
   ngOnInit(): void {
-    //if(!this.hours.length){
+    if(!this.defaultValues){
       this.timeBlocks.push(new FormGroup({
         weekdays: new FormControl(['MO', 'TU', 'WE', 'TH', 'FR'], Validators.required),
         from: new FormControl('', Validators.required),
         to: new FormControl('', Validators.required)
       }, { validators: this.timeValuesRangeValidation }));
-    //}
+    }
+    else{
+      this.defaultValues.forEach(hour => {
+        this.timeBlocks.push(new FormGroup({
+          weekdays: new FormControl(hour.weekdays, Validators.required),
+          from: new FormControl(hour.from, Validators.required),
+          to: new FormControl(hour.to, Validators.required)
+        }));
+      });
+    }
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.timeBlocks.valueChanges.subscribe(val => {
+      this.onChange.emit(val);
+    });
   }
 
   addWorkingHours(){
@@ -44,10 +64,12 @@ export class WorkingHoursSharedComponent implements OnInit {
       from: new FormControl('', Validators.required),
       to: new FormControl('', Validators.required)
     }, { validators: this.timeValuesRangeValidation }));
+    //this.onChange.emit(this.timeBlocks.value);
   }
 
   removeWorkingHours(index: number){
     this.timeBlocks.removeAt(index);
+    //this.onChange.emit(this.timeBlocks.value);
   }
 
   timeValuesRangeValidation = (c: AbstractControl): { [key: string]: boolean } | null => {

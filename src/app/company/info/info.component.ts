@@ -62,10 +62,6 @@ export class InfoComponent implements OnInit {
     this.companyForm.valueChanges.subscribe(val => {
       this.isCompanyFormUpdated = true;
     });
-
-    this.userForm.valueChanges.subscribe(val => {
-      this.isUserFormUpdated = true;
-    });
   }
 
   updateCompanyForm(){

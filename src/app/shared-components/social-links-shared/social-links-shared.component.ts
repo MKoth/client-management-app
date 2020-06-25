@@ -32,7 +32,14 @@ export class SocialLinksSharedComponent implements OnInit {
           url: new FormControl(link.url, [Validators.required, Validators.pattern(web_reg)])
         }));
       });
-    }
+    };
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.socialsBlocks.valueChanges.subscribe(val => {
+      this.onChange.emit(val);
+    });
   }
 
   addSocialLinks(){
@@ -40,13 +47,13 @@ export class SocialLinksSharedComponent implements OnInit {
       name: new FormControl('', Validators.required),
       url: new FormControl('', [Validators.required, Validators.pattern(web_reg)])
     }));
-    this.onChange.emit(this.socialsBlocks.value);
+    //this.onChange.emit(this.socialsBlocks.value);
   }
 
   removeSocialLinks(index: number){
     this.socialsBlocks.removeAt(index);
     console.log(this.socialsBlocks.value);
-    this.onChange.emit(this.socialsBlocks.value);
+    //this.onChange.emit(this.socialsBlocks.value);
   }
 
 }
