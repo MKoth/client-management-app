@@ -12,7 +12,11 @@ export class InfoComponent implements OnInit {
 
   companyForm:FormGroup;
 
-  isFormUpdated:boolean = false;
+  userForm:FormGroup;
+
+  isCompanyFormUpdated:boolean = false;
+
+  isUserFormUpdated:boolean = false;
 
   companyData = {
     company_name: "Uber",
@@ -25,6 +29,13 @@ export class InfoComponent implements OnInit {
     language: "en"
   }
 
+  userData = {
+    name: 'James',
+    last_name: 'Brooks',
+    username: 'jbrooks',
+    email: 'jbrooks@mail.com'
+  }
+
   constructor() {
     this.companyForm = new FormGroup({});
     this.companyForm.addControl('company_name', new FormControl(this.companyData.company_name, [Validators.required]));
@@ -35,6 +46,12 @@ export class InfoComponent implements OnInit {
     this.companyForm.addControl('vat', new FormControl(this.companyData.vat, [Validators.required]));
     this.companyForm.addControl('timezone', new FormControl(this.companyData.timezone, [Validators.required]));
     this.companyForm.addControl('language', new FormControl(this.companyData.language, [Validators.required]));
+
+    this.userForm = new FormGroup({});
+    this.userForm.addControl('name', new FormControl(this.userData.name, [Validators.required]));
+    this.userForm.addControl('last_name', new FormControl(this.userData.last_name, [Validators.required]));
+    this.userForm.addControl('username', new FormControl(this.userData.username, [Validators.required]));
+    this.userForm.addControl('email', new FormControl(this.userData.email, [Validators.required, Validators.email]));
   }
 
   ngOnInit(): void {
@@ -43,12 +60,20 @@ export class InfoComponent implements OnInit {
 
   onChanges(): void {
     this.companyForm.valueChanges.subscribe(val => {
-      this.isFormUpdated = true;
+      this.isCompanyFormUpdated = true;
+    });
+
+    this.userForm.valueChanges.subscribe(val => {
+      this.isUserFormUpdated = true;
     });
   }
 
-  updateForm(){
-    this.isFormUpdated = false;
+  updateCompanyForm(){
+    this.isCompanyFormUpdated = false;
+  }
+
+  updateUserForm(){
+    this.isUserFormUpdated = false;
   }
 
   get company_name() { return this.companyForm.get('company_name'); }
@@ -66,5 +91,15 @@ export class InfoComponent implements OnInit {
   get timezone() { return this.companyForm.get('timezone'); }
   
   get language() { return this.companyForm.get('language'); }
+
+
+
+  get name() { return this.userForm.get('name'); }
+
+  get last_name() { return this.userForm.get('last_name'); }
+
+  get username() { return this.userForm.get('username'); }
+
+  get email() { return this.userForm.get('email'); }
 
 }

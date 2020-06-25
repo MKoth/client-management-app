@@ -3,141 +3,203 @@
         <mat-card-title>Company Information</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-<form
-[formGroup]="companyForm"
-class="company-form"
-fxLayout="row wrap"
-fxLayoutGap="1%"
->
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="1" fxFlex.lt-md="49%" fxFlexOrder.lt-md="1" fxFlex.xs="99%" fxFlexOrder.xs="1">
-    <mat-label>Company Name</mat-label>
-    <input matInput formControlName="company_name" required />
-    <div *ngIf="company_name.invalid && (company_name.dirty || company_name.touched)" class="alert alert-danger">
-        <div *ngIf="company_name.errors.required">
-            Company name is required.
-        </div>
-    </div>
-</mat-form-field>
+        <form
+            [formGroup]="companyForm"
+            class="company-form"
+            fxLayout="row wrap"
+            fxLayoutGap="1%"
+        >
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="1" fxFlex.lt-md="49%" fxFlexOrder.lt-md="1" fxFlex.xs="99%" fxFlexOrder.xs="1">
+            <mat-label>Company Name</mat-label>
+            <input matInput formControlName="company_name" required />
+            <div *ngIf="company_name.invalid && (company_name.dirty || company_name.touched)" class="alert alert-danger">
+                <div *ngIf="company_name.errors.required">
+                    Company name is required.
+                </div>
+            </div>
+        </mat-form-field>
 
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="4" fxFlex.lt-md="49%" fxFlexOrder.lt-md="2" fxFlex.xs="99%" fxFlexOrder.xs="2">
-    <mat-label>Website</mat-label>
-    <input matInput required formControlName="website">
-    <div *ngIf="website.invalid && (website.dirty || website.touched)" class="alert alert-danger">
-        <div *ngIf="website.errors.required">
-            Website is required.
-        </div>
-        <div *ngIf="website.errors.pattern">
-            Website is not valid.
-        </div>
-    </div>
-</mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="4" fxFlex.lt-md="49%" fxFlexOrder.lt-md="2" fxFlex.xs="99%" fxFlexOrder.xs="2">
+            <mat-label>Website</mat-label>
+            <input matInput required formControlName="website">
+            <div *ngIf="website.invalid && (website.dirty || website.touched)" class="alert alert-danger">
+                <div *ngIf="website.errors.required">
+                    Website is required.
+                </div>
+                <div *ngIf="website.errors.pattern">
+                    Website is not valid.
+                </div>
+            </div>
+        </mat-form-field>
 
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="7" fxFlex.lt-md="49%" fxFlexOrder.lt-md="3" fxFlex.xs="99%" fxFlexOrder.xs="3">
-    <mat-label>Address</mat-label>
-    <input matInput required formControlName="address">
-    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
-        <div *ngIf="address.errors.required">
-            Address is required.
-        </div>
-    </div>
-</mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="7" fxFlex.lt-md="49%" fxFlexOrder.lt-md="3" fxFlex.xs="99%" fxFlexOrder.xs="3">
+            <mat-label>Address</mat-label>
+            <input matInput required formControlName="address">
+            <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+                <div *ngIf="address.errors.required">
+                    Address is required.
+                </div>
+            </div>
+        </mat-form-field>
 
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="8" fxFlex.lt-md="49%" fxFlexOrder.lt-md="4" fxFlex.xs="99%" fxFlexOrder.xs="8">
-    <mat-label>Description</mat-label>
-    <textarea matInput required formControlName="description"></textarea>
-    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
-        <div *ngIf="description.errors.required">
-            Description is required.
-        </div>
-        <div *ngIf="description.errors.minlength">
-            Description should be at least 6 characters long.
-        </div>
-    </div>
-</mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="8" fxFlex.lt-md="49%" fxFlexOrder.lt-md="4" fxFlex.xs="99%" fxFlexOrder.xs="8">
+            <mat-label>Description</mat-label>
+            <textarea matInput required formControlName="description"></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+                <div *ngIf="description.errors.required">
+                    Description is required.
+                </div>
+                <div *ngIf="description.errors.minlength">
+                    Description should be at least 6 characters long.
+                </div>
+            </div>
+        </mat-form-field>
 
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="2" fxFlex.lt-md="49%" fxFlexOrder.lt-md="5" fxFlex.xs="99%" fxFlexOrder.xs="4">
-    <mat-label>Default Currency</mat-label>
-    <mat-select required formControlName="currency">
-        <mat-option value="usd"> USD (US Dollars) </mat-option>
-        <mat-option value="eur"> EUR (Euro) </mat-option>
-    </mat-select>
-    <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="alert alert-danger">
-        <div *ngIf="currency.errors.required">
-            Currency is required.
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="2" fxFlex.lt-md="49%" fxFlexOrder.lt-md="5" fxFlex.xs="99%" fxFlexOrder.xs="4">
+            <mat-label>Default Currency</mat-label>
+            <mat-select required formControlName="currency">
+                <mat-option value="usd"> USD (US Dollars) </mat-option>
+                <mat-option value="eur"> EUR (Euro) </mat-option>
+            </mat-select>
+            <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="alert alert-danger">
+                <div *ngIf="currency.errors.required">
+                    Currency is required.
+                </div>
+            </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="5" fxFlex.lt-md="49%" fxFlexOrder.lt-md="6" fxFlex.xs="99%" fxFlexOrder.xs="5">
+            <mat-label>VAT</mat-label>
+            <mat-select required formControlName="vat">
+                <mat-option value="15"> 15% </mat-option>
+                <mat-option value="20"> 20% </mat-option>
+                <mat-option value="25"> 25% </mat-option>
+                <mat-option value="30"> 30% </mat-option>
+            </mat-select>
+            <div *ngIf="vat.invalid && (vat.dirty || vat.touched)" class="alert alert-danger">
+                <div *ngIf="vat.errors.required">
+                    VAT is required.
+                </div>
+            </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="3" fxFlex.lt-md="49%" fxFlexOrder.lt-md="7" fxFlex.xs="99%" fxFlexOrder.xs="6">
+            <mat-label>Timezone</mat-label>
+            <mat-select required formControlName="timezone">
+                <mat-option value="GMT+0:00"> GMT </mat-option>
+                <mat-option value="GMT+1:00"> GMT+1:00 </mat-option>
+                <mat-option value="GMT+2:00"> GMT+2:00 </mat-option>
+                <mat-option value="GMT+3:00"> GMT+3:00 </mat-option>
+                <mat-option value="GMT+3:30"> GMT+3:00 </mat-option>
+                <mat-option value="GMT+4:00"> GMT+4:00 </mat-option>
+                <mat-option value="GMT+5:00"> GMT+5:00 </mat-option>
+                <mat-option value="GMT+5:30"> GMT+5:00 </mat-option>
+                <mat-option value="GMT+6:00"> GMT+6:00 </mat-option>
+                <mat-option value="GMT+7:00"> GMT+7:00 </mat-option>
+                <mat-option value="GMT+8:00"> GMT+8:00 </mat-option>
+                <mat-option value="GMT+9:00"> GMT+9:00 </mat-option>
+                <mat-option value="GMT+9:30"> GMT+9:00 </mat-option>
+                <mat-option value="GMT+10:00"> GMT+10:00 </mat-option>
+                <mat-option value="GMT+11:00"> GMT+11:00 </mat-option>
+                <mat-option value="GMT+12:00"> GMT+12:00 </mat-option>
+                <mat-option value="GMT-11:00"> GMT-11:00 </mat-option>
+                <mat-option value="GMT-10:00"> GMT-10:00 </mat-option>
+                <mat-option value="GMT-9:00"> GMT-9:00 </mat-option>
+                <mat-option value="GMT-8:00"> GMT-8:00 </mat-option>
+                <mat-option value="GMT-7:00"> GMT-7:00 </mat-option>
+                <mat-option value="GMT-6:00"> GMT-6:00 </mat-option>
+                <mat-option value="GMT-5:00"> GMT-5:00 </mat-option>
+                <mat-option value="GMT-4:00"> GMT-4:00 </mat-option>
+                <mat-option value="GMT-3:30"> GMT-3:30 </mat-option>
+                <mat-option value="GMT-3:00"> GMT-3:00 </mat-option>
+                <mat-option value="GMT-1:00"> GMT-1:00 </mat-option>
+            </mat-select>
+            <div *ngIf="timezone.invalid && (timezone.dirty || timezone.touched)" class="alert alert-danger">
+                <div *ngIf="timezone.errors.required">
+                    Timezone is required.
+                </div>
+            </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="6" fxFlex.lt-md="49%" fxFlexOrder.lt-md="8" fxFlex.xs="99%" fxFlexOrder.xs="7">
+            <mat-label>Language</mat-label>
+            <mat-select required formControlName="language">
+                <mat-option value="en"> English </mat-option>
+                <mat-option value="ru"> Russian </mat-option>
+            </mat-select>
+            <div *ngIf="language.invalid && (language.dirty || language.touched)" class="alert alert-danger">
+                <div *ngIf="language.errors.required">
+                    Language is required.
+                </div>
+            </div>
+        </mat-form-field>
+        <div fxFlex="100%" fxLayout="row wrap"  fxFlexOrder="9" fxLayoutAlign="end start">
+            <button mat-flat-button matStepperPrevious color="accent" [disabled]="!isCompanyFormUpdated||companyForm.invalid" (click)="updateCompanyForm()">UPDATE COMPANY INFO</button>
         </div>
-    </div>
-</mat-form-field>
-
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="5" fxFlex.lt-md="49%" fxFlexOrder.lt-md="6" fxFlex.xs="99%" fxFlexOrder.xs="5">
-    <mat-label>VAT</mat-label>
-    <mat-select required formControlName="vat">
-        <mat-option value="15"> 15% </mat-option>
-        <mat-option value="20"> 20% </mat-option>
-        <mat-option value="25"> 25% </mat-option>
-        <mat-option value="30"> 30% </mat-option>
-    </mat-select>
-    <div *ngIf="vat.invalid && (vat.dirty || vat.touched)" class="alert alert-danger">
-        <div *ngIf="vat.errors.required">
-            VAT is required.
-        </div>
-    </div>
-</mat-form-field>
-
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="3" fxFlex.lt-md="49%" fxFlexOrder.lt-md="7" fxFlex.xs="99%" fxFlexOrder.xs="6">
-    <mat-label>Timezone</mat-label>
-    <mat-select required formControlName="timezone">
-        <mat-option value="GMT+0:00"> GMT </mat-option>
-        <mat-option value="GMT+1:00"> GMT+1:00 </mat-option>
-        <mat-option value="GMT+2:00"> GMT+2:00 </mat-option>
-        <mat-option value="GMT+3:00"> GMT+3:00 </mat-option>
-        <mat-option value="GMT+3:30"> GMT+3:00 </mat-option>
-        <mat-option value="GMT+4:00"> GMT+4:00 </mat-option>
-        <mat-option value="GMT+5:00"> GMT+5:00 </mat-option>
-        <mat-option value="GMT+5:30"> GMT+5:00 </mat-option>
-        <mat-option value="GMT+6:00"> GMT+6:00 </mat-option>
-        <mat-option value="GMT+7:00"> GMT+7:00 </mat-option>
-        <mat-option value="GMT+8:00"> GMT+8:00 </mat-option>
-        <mat-option value="GMT+9:00"> GMT+9:00 </mat-option>
-        <mat-option value="GMT+9:30"> GMT+9:00 </mat-option>
-        <mat-option value="GMT+10:00"> GMT+10:00 </mat-option>
-        <mat-option value="GMT+11:00"> GMT+11:00 </mat-option>
-        <mat-option value="GMT+12:00"> GMT+12:00 </mat-option>
-        <mat-option value="GMT-11:00"> GMT-11:00 </mat-option>
-        <mat-option value="GMT-10:00"> GMT-10:00 </mat-option>
-        <mat-option value="GMT-9:00"> GMT-9:00 </mat-option>
-        <mat-option value="GMT-8:00"> GMT-8:00 </mat-option>
-        <mat-option value="GMT-7:00"> GMT-7:00 </mat-option>
-        <mat-option value="GMT-6:00"> GMT-6:00 </mat-option>
-        <mat-option value="GMT-5:00"> GMT-5:00 </mat-option>
-        <mat-option value="GMT-4:00"> GMT-4:00 </mat-option>
-        <mat-option value="GMT-3:30"> GMT-3:30 </mat-option>
-        <mat-option value="GMT-3:00"> GMT-3:00 </mat-option>
-        <mat-option value="GMT-1:00"> GMT-1:00 </mat-option>
-    </mat-select>
-    <div *ngIf="timezone.invalid && (timezone.dirty || timezone.touched)" class="alert alert-danger">
-        <div *ngIf="timezone.errors.required">
-            Timezone is required.
-        </div>
-    </div>
-</mat-form-field>
-
-<mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="6" fxFlex.lt-md="49%" fxFlexOrder.lt-md="8" fxFlex.xs="99%" fxFlexOrder.xs="7">
-    <mat-label>Language</mat-label>
-    <mat-select required formControlName="language">
-        <mat-option value="en"> English </mat-option>
-        <mat-option value="ru"> Russian </mat-option>
-    </mat-select>
-    <div *ngIf="language.invalid && (language.dirty || language.touched)" class="alert alert-danger">
-        <div *ngIf="language.errors.required">
-            Language is required.
-        </div>
-    </div>
-</mat-form-field>
-<div fxFlex="100%" fxLayout="row wrap"  fxFlexOrder="9" fxLayoutAlign="end start">
-    <button mat-flat-button matStepperPrevious color="accent" [disabled]="!isFormUpdated||companyForm.invalid" (click)="updateForm()">UPDATE</button>
-</div>
 
 
-</form>
-</mat-card-content>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+<mat-card style="margin-top: 20px">
+    <mat-card-header>
+        <mat-card-title>Company Owner Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form
+            [formGroup]="userForm"
+            class="user-form"
+            fxLayout="row wrap"
+            fxLayoutGap="1%"
+        >
+
+            <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="1" fxFlex.lt-md="49%" fxFlexOrder.lt-md="1" fxFlex.xs="99%" fxFlexOrder.xs="1">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="name" required />
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name.errors.required">
+                        Name is required.
+                    </div>
+                </div>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="2" fxFlex.lt-md="49%" fxFlexOrder.lt-md="3" fxFlex.xs="99%" fxFlexOrder.xs="3">
+                <mat-label>Username</mat-label>
+                <input matInput required formControlName="username">
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                        Username is required.
+                    </div>
+                </div>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="3" fxFlex.lt-md="49%" fxFlexOrder.lt-md="2" fxFlex.xs="99%" fxFlexOrder.xs="2">
+                <mat-label>Last Name</mat-label>
+                <input matInput required formControlName="last_name">
+                <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="alert alert-danger">
+                    <div *ngIf="last_name.errors.required">
+                        Last Name is required.
+                    </div>
+                </div>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="32.333%" fxFlexOrder="4" fxFlex.lt-md="49%" fxFlexOrder.lt-md="4" fxFlex.xs="99%" fxFlexOrder.xs="4">
+                <mat-label>Email</mat-label>
+                <input matInput required formControlName="email">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        Email must be valid.
+                    </div>
+                </div>
+            </mat-form-field>
+            <div fxFlex="100%" fxLayout="row wrap"  fxFlexOrder="5" fxLayoutAlign="end start">
+                <button mat-flat-button matStepperNext color="accent" [disabled]="!isUserFormUpdated||userForm.invalid" (click)="updateUserForm()">UPDATE USER INFO</button>
+            </div>
+        </form>
+    </mat-card-content>
 </mat-card>
