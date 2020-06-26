@@ -4,6 +4,10 @@ import { FormDesignComponent } from './form-design/form-design.component';
 import { ButtonDesignComponent } from './button-design/button-design.component';
 import { CodeComponent } from './code/code.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { WidgetPagesModule } from './form-design/widget-pages/widget-pages.module';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const routes: Routes = [
   { path: '', redirectTo: 'form-design', pathMatch: 'full' },
@@ -16,7 +20,11 @@ const routes: Routes = [
   declarations: [FormDesignComponent, ButtonDesignComponent, CodeComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatButtonModule,
+    MatCardModule,
+    WidgetPagesModule,
+    FlexLayoutModule
   ],
   exports: [
     RouterModule

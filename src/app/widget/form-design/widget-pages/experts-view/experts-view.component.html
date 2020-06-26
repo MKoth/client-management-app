@@ -1,0 +1,24 @@
+<mat-list>
+    <mat-list-item> 
+        <p matLine>SELECT AN EXPERT</p> 
+        <span style="opacity: 0.6;" matLine>Online booking</span> 
+        <button mat-icon-button>
+            Skip
+        </button>   
+        <mat-divider></mat-divider>
+    </mat-list-item>
+    
+</mat-list>
+
+<mat-list>
+    <mat-list-item *ngFor="let staff of staff_team">
+        <img matListAvatar src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201907/imgonline-com-ua-FrameBlurred-_14-770x433.jpeg?b9RaYEEvetkLvroGBpGaOwg7vTih1Msj">
+        <h3 matLine> {{staff.name}} </h3>
+        <p matLine>
+            <span style="opacity: 0.6;"> {{staff.position}} </span>
+        </p>
+        <button mat-icon-button>
+            Choose
+        </button> 
+    </mat-list-item>
+</mat-list>
