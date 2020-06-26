@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule,
+    PerfectScrollbarModule
   ],
   exports:[
     ExpertsViewComponent, ServiceViewComponent, DateViewComponent, TimeViewComponent, PaymentViewComponent, ResultViewComponent

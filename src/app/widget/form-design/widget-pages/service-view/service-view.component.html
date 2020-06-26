@@ -1,1 +1,69 @@
-<p>service-view works!</p>
+<mat-list>
+    <mat-list-item> 
+        <p matLine>SELECT SERVICES</p> 
+        <span style="opacity: 0.6;" matLine>Online booking</span> 
+        <button mat-icon-button>
+            Skip
+        </button>   
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>
+<div style="height: 500px; overflow: auto;">
+    <perfect-scrollbar>
+
+    
+        <ng-container 
+            [ngTemplateOutlet]="expansionPanel"
+            [ngTemplateOutletContext]="{parent:null}"
+        ></ng-container>
+
+    </perfect-scrollbar>
+</div>
+<mat-list>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <p matLine>SELECTED SERVICES: {{servicesIds.length}}</p> 
+        <p style="opacity: 0.6;" matLine>{{calculateSummary()}}</p> 
+        <button mat-icon-button>
+            Next
+        </button>   
+    </mat-list-item>
+</mat-list>
+
+<ng-template #test let-parent>Hello</ng-template>
+
+<ng-template #expansionPanel let-parent='parent'>
+    {{log(parent)}}
+    <ng-container *ngFor="let category of categories">
+        <mat-accordion *ngIf="category.parent===parent">
+            <mat-expansion-panel>
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{category.name}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div>
+                    
+                    <mat-selection-list *ngIf="category.services.length">
+                        <mat-list-option *ngFor="let service of category.services" [value]="service.id" [selected]="isChecked(service.id)"> 
+
+                                
+                            <p>{{getServiceData(service).name}}</p> 
+                            <p matLine>{{"Duration: "+getServiceData(service).hours+"h "+getServiceData(service).minutes+"m"}}</p> 
+                            <span matLine>{{getServiceData(service).price+'$'}}</span>
+
+                        </mat-list-option>
+                    </mat-selection-list>
+                    <!--content-->
+                    <ng-container 
+                        [ngTemplateOutlet]="expansionPanel"
+                        [ngTemplateOutletContext]="{parent:category.id}"
+                    ></ng-container>
+
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </ng-container>
+</ng-template>
