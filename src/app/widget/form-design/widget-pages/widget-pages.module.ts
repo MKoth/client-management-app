@@ -13,6 +13,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     FlexLayoutModule,
     MatDividerModule,
     MatExpansionModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    FormsModule
   ],
   exports:[
     ExpertsViewComponent, ServiceViewComponent, DateViewComponent, TimeViewComponent, PaymentViewComponent, ResultViewComponent

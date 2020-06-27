@@ -30,10 +30,7 @@
     </mat-list-item>
 </mat-list>
 
-<ng-template #test let-parent>Hello</ng-template>
-
 <ng-template #expansionPanel let-parent='parent'>
-    {{log(parent)}}
     <ng-container *ngFor="let category of categories">
         <mat-accordion *ngIf="category.parent===parent">
             <mat-expansion-panel>
@@ -47,8 +44,7 @@
                 <div>
                     
                     <mat-selection-list *ngIf="category.services.length">
-                        <mat-list-option *ngFor="let service of category.services" [value]="service.id" [selected]="isChecked(service.id)"> 
-
+                        <mat-list-option *ngFor="let service of category.services" [value]="service" [selected]="isChecked(service)" (click)="onCheckClicked(service)">
                                 
                             <p>{{getServiceData(service).name}}</p> 
                             <p matLine>{{"Duration: "+getServiceData(service).hours+"h "+getServiceData(service).minutes+"m"}}</p> 

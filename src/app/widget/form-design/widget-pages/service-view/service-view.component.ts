@@ -42,12 +42,21 @@ export class ServiceViewComponent implements OnInit {
     {id:9, name: "Woman hair coloring", services:[18,19,20], parent:7},
   ];
 
-  servicesIds = [];
+  servicesIds = [1,5,10,15,20];
 
   constructor() { }
 
   isChecked(servicesId){
     return this.servicesIds.includes(servicesId);
+  }
+
+  onCheckClicked(serviceId){
+    if(this.servicesIds.includes(serviceId)){
+      this.servicesIds.splice(this.servicesIds.indexOf(serviceId),1);
+    }
+    else{
+      this.servicesIds.push(serviceId);
+    }
   }
 
   calculateSummary(){
