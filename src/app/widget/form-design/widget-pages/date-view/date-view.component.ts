@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateViewComponent implements OnInit {
 
-  constructor() { }
+  minDate: Date;
+
+  constructor() { 
+    this.minDate = new Date();
+  }
 
   ngOnInit(): void {
+  }
+
+  dateChanged(date){
+    console.log(date);
   }
 
 }
