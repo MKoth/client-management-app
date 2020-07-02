@@ -1,0 +1,70 @@
+<mat-list>
+    <mat-list-item> 
+        <span style="position: absolute; left: 0; font-size: 25px;">&#60;</span>
+        <p matLine>FILL IN FORM</p> 
+        <span style="opacity: 0.6;" matLine>Online booking</span> 
+          
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>
+<form
+    [formGroup]="userForm"
+    class="user-form"
+    fxLayout="column"
+    fxLayoutGap="1%"
+>
+
+    <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="first_name" required />
+        <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="alert alert-danger">
+            <div *ngIf="first_name.errors.required">
+                First Name is required.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput required formControlName="last_name" required >
+        <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="alert alert-danger">
+            <div *ngIf="last_name.errors.required">
+                Last Name is required.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input type="number" matInput required formControlName="phone" required >
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+            <div *ngIf="phone.errors.required">
+                Phone is required.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput required formControlName="email" required >
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+                Email is required.
+            </div>
+            <div *ngIf="email.errors.email">
+                Email must be valid.
+            </div>
+        </div>
+    </mat-form-field>
+
+    <div>
+        <mat-checkbox formControlName="agreement" required>I accept the term of user agreement</mat-checkbox>
+        <div *ngIf="agreement.invalid && (agreement.dirty || agreement.touched)" class="alert alert-danger">
+            <div *ngIf="agreement.errors.required">
+                Please accept the term of user agreement! 
+            </div>
+        </div>
+    </div>
+
+    <button mat-flat-button color="accent" [disabled]="userForm.invalid">SUBMIT</button>
+</form>
