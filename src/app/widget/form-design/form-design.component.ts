@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ColorAdapter } from '@angular-material-components/color-picker';
 //declare const tinycolor: any;
 var tinycolor = require("tinycolor2");
 
-export interface Color {
+export interface ColorPalette {
   name: string;
   hex: string;
   darkContrast: boolean;
@@ -16,17 +16,35 @@ export interface Color {
 })
 export class FormDesignComponent implements OnInit {
 
-  primaryColor = 'green';
+  primaryColor = '#00ff00';
 
-  primaryColorPalette: Color[] = [];
+  primaryAdaptedColor = null;
 
-  secondaryColor = 'blue';
+  primaryColorPalette: ColorPalette[] = [];
 
-  secondaryColorPalette: Color[] = [];
+  secondaryColor = '#0000ff';
 
-  constructor() {
+  secondaryAdaptedColor = null;
+
+  secondaryColorPalette: ColorPalette[] = [];
+
+  foregroundColor = '#000000';
+
+  foregroundAdapterColor = null;
+
+  backgroundColor = '#ffffff';
+
+  backgroundAdapterColor = null;
+
+  constructor( colorAdapter:ColorAdapter ) {
     this.savePrimaryColor();
+    this.primaryAdaptedColor = colorAdapter.parse(this.primaryColor);
     this.saveSecondaryColor();
+    this.secondaryAdaptedColor = colorAdapter.parse(this.secondaryColor);
+    this.saveForegroundColor();
+    this.foregroundAdapterColor = colorAdapter.parse(this.foregroundColor);
+    this.saveBackgroundColor();
+    this.backgroundAdapterColor = colorAdapter.parse(this.backgroundColor);
   }
 
   ngOnInit(): void { }
@@ -57,9 +75,44 @@ export class FormDesignComponent implements OnInit {
     }
   }
 
+  saveForegroundColor() {
+    document.documentElement.style.setProperty('--theme-foreground', this.foregroundColor);
+  }
+
+  saveBackgroundColor() {
+    console.log(this.backgroundColor);
+    document.documentElement.style.setProperty('--theme-background', this.backgroundColor);
+  }
+
+  log(e){console.log(e.toHex());}
+
+  updatePrimaryColor(color){
+    this.primaryAdaptedColor = color;
+    this.primaryColor = color.toHexString();
+    this.savePrimaryColor();
+  }
+
+  updateSecondaryColor(color){
+    this.secondaryAdaptedColor = color;
+    this.secondaryColor = color.toHexString();
+    this.saveSecondaryColor();
+  }
+
+  updateForegroundColor(color){
+    this.foregroundAdapterColor = color;
+    this.foregroundColor = color.toHexString();
+    this.saveForegroundColor();
+  }
+
+  updateBackgroundColor(color){
+    this.backgroundAdapterColor = color;
+    this.backgroundColor = color.toHexString();
+    this.saveBackgroundColor();
+  }
+
 }
 
-function computeColors(hex: string): Color[] {
+function computeColors(hex: string): ColorPalette[] {
   return [
     getColorObject(tinycolor(hex).lighten(52), '50'),
     getColorObject(tinycolor(hex).lighten(37), '100'),
@@ -78,7 +131,7 @@ function computeColors(hex: string): Color[] {
   ];
 }
 
-function getColorObject(value, name): Color {
+function getColorObject(value, name): ColorPalette {
   const c = tinycolor(value);
   return {
     name: name,

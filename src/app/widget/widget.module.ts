@@ -8,6 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { WidgetPagesModule } from './form-design/widget-pages/widget-pages.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 const routes: Routes = [
   { path: '', redirectTo: 'form-design', pathMatch: 'full' },
@@ -24,10 +27,16 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     WidgetPagesModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxMatColorPickerModule,
+    FormsModule,
+    MatInputModule
   ],
   exports: [
     RouterModule
+  ],
+  providers:[
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
   ]
 })
 export class WidgetModule { }

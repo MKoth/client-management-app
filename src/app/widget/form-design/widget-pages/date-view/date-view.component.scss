@@ -124,12 +124,6 @@ $dynamic-theme-secondary: (
 
 $app-theme: create-my-cap-theme(mat-palette($dynamic-theme-primary), mat-palette($dynamic-theme-secondary), mat-palette($mat-red));
 
-::ng-deep .dynamic-theme{
-  @include angular-material-theme($app-theme);
-
-  .mat-expansion-panel {
-    border-radius: 0px !important;
-    box-shadow: none !important;
-    border-bottom: 1px solid var(--theme-foreground);
-  }
+::ng-deep{
+    @include mat-datepicker-theme($app-theme);
 }

@@ -1,29 +1,63 @@
-<div fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="10px" >
-    <mat-card>
-        <app-experts-view></app-experts-view>
-    </mat-card>
+<mat-card
+    fxLayout="row wrap" 
+    fxLayoutAlign="space-between center"
+>
+    <mat-form-field>
+        <mat-label>Primary Color</mat-label>
+        <input matInput [ngxMatColorPicker]="primaryPicker" [(ngModel)]="primaryAdaptedColor" (ngModelChange)="updatePrimaryColor($event)" [disabled]="true">
+        <ngx-mat-color-toggle matSuffix [for]="primaryPicker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #primaryPicker [disabled]="false"></ngx-mat-color-picker>
+    </mat-form-field>
 
-    <mat-card>
-        <app-service-view></app-service-view>
-    </mat-card>
+    <mat-form-field>
+        <mat-label>Secondary Color</mat-label>
+        <input matInput [ngxMatColorPicker]="secondaryPicker" [(ngModel)]="secondaryAdaptedColor" (ngModelChange)="updateSecondaryColor($event)" [disabled]="true">
+        <ngx-mat-color-toggle matSuffix [for]="secondaryPicker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #secondaryPicker [disabled]="false"></ngx-mat-color-picker>
+    </mat-form-field>
 
-    <mat-card>
-        <app-date-view></app-date-view>
-    </mat-card>
+    <mat-form-field>
+        <mat-label>Text Color</mat-label>
+        <input matInput [ngxMatColorPicker]="foregroundPicker" [(ngModel)]="foregroundAdapterColor" (ngModelChange)="updateForegroundColor($event)" [disabled]="true">
+        <ngx-mat-color-toggle matSuffix [for]="foregroundPicker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #foregroundPicker [disabled]="false"></ngx-mat-color-picker>
+    </mat-form-field>
 
-    <mat-card>
-        <app-time-view></app-time-view>
-    </mat-card>
-
-    <mat-card>
-        <app-client-form></app-client-form>
-    </mat-card>
-
-    <mat-card>
-        <app-payment-view></app-payment-view>
-    </mat-card>
-
-    <mat-card>
-        <app-result-view></app-result-view>
-    </mat-card>
+    <mat-form-field>
+        <mat-label>Background Color</mat-label>
+        <input matInput [ngxMatColorPicker]="backgroundPicker" [(ngModel)]="backgroundAdapterColor" (ngModelChange)="updateBackgroundColor($event)" [disabled]="true">
+        <ngx-mat-color-toggle matSuffix [for]="backgroundPicker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #backgroundPicker [disabled]="false"></ngx-mat-color-picker>
+    </mat-form-field>
+</mat-card>
+<div class="dynamic-theme">
+    <div fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="10px" >
+        <mat-card>
+            <app-experts-view></app-experts-view>
+        </mat-card>
+    
+        <mat-card>
+            <app-service-view></app-service-view>
+        </mat-card>
+    
+        <mat-card>
+            <app-date-view></app-date-view>
+        </mat-card>
+    
+        <mat-card>
+            <app-time-view></app-time-view>
+        </mat-card>
+    
+        <mat-card>
+            <app-client-form></app-client-form>
+        </mat-card>
+    
+        <mat-card>
+            <app-payment-view></app-payment-view>
+        </mat-card>
+    
+        <mat-card>
+            <app-result-view></app-result-view>
+        </mat-card>
+    </div>
 </div>
